@@ -1,2 +1,2 @@
 # neblio
-HTML5 canvas spae game
+HTML5 canvas space game
