@@ -1,0 +1,43 @@
+<html>
+
+	<head>
+		<title>Space</title>
+	</head>
+	
+	
+	<body>
+	
+	</body>
+	
+	
+	<script src="js/renderer.js"></script>
+	<script src="js/entities.js"></script>
+	<script src="js/controls.js"></script>
+	<script src="js/universeViewControls.js"></script>
+	<script src="js/universeViewDriver.js"></script>
+	<script src="js/gameEngine.js"></script>
+	
+	<script>
+	
+		var ANGLE_CHANGE_SPEED = 2;
+		var START_SCALE = 1;
+		var TARGET_TICK_DELTA = 50;
+		var gameStartTime = Date.now();
+		var DEBUG = true;
+		var NUMBER_OF_ENEMIES = 1000;
+		
+		var renderer = new Renderer(window, document, "body", START_SCALE);
+		renderer.init();
+		
+		var driver = new GameDriver(NUMBER_OF_ENEMIES, renderer, ANGLE_CHANGE_SPEED, window.console.log, function(txt){alert.call(window, txt);}, DEBUG, Entity, Player, ScaledControl);
+		
+		var universeViewControls = new UniverseViewControls(driver);
+		driver.controls = universeViewControls;
+		ControlsBinder.bind(driver, document);
+		
+		var gameEngine = new GameEngine(driver, TARGET_TICK_DELTA);
+		driver.gameEngine = gameEngine;
+		gameEngine.start();
+	</script>
+	
+</html>
